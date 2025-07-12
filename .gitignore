@@ -10,3 +10,6 @@ __pycache__/
 # Ignore large files or personal docs
 *.pdf
 *.xlsx 
+extract_excel.py
+extract_pdf.py
+pdf_extracted.json 
