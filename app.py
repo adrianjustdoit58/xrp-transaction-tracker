@@ -19,14 +19,13 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 # Login setup
-# Load config directly from st.secrets (already a dict)
-config = st.secrets.to_dict()
+# Direct access to st.secrets
 authenticator = Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
+    st.secrets.credentials,
+    st.secrets.cookie.name,
+    st.secrets.cookie.key,
+    st.secrets.cookie.expiry_days,
+    st.secrets.preauthorized
 )
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
