@@ -19,7 +19,8 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 # Login setup
-config = yaml.safe_load(st.secrets['auth_config'])
+# Load config directly from st.secrets (already a dict)
+config = st.secrets.to_dict()
 authenticator = Authenticate(
     config['credentials'],
     config['cookie']['name'],
