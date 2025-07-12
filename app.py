@@ -29,7 +29,7 @@ authenticator = Authenticate(
     cookie['name'],
     cookie['key'],
     cookie['expiry_days'],
-    pre_authorized  # Updated spelling
+    st.secrets.preauthorized  # Correct spelling
 )
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
