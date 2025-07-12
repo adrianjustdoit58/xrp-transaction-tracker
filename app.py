@@ -1,6 +1,7 @@
 import streamlit as st
 import sys
 import os
+import copy
 
 # Add project root to path for imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -21,9 +22,9 @@ from reportlab.pdfgen import canvas
 # Login setup
 # Direct access to st.secrets
 # Make mutable copies of secrets
-credentials = dict(st.secrets.credentials)
-cookie = dict(st.secrets.cookie)
-preauthorized = dict(st.secrets.preauthorized)
+credentials = copy.deepcopy(dict(st.secrets.credentials))
+cookie = copy.deepcopy(dict(st.secrets.cookie))
+preauthorized = copy.deepcopy(dict(st.secrets.preauthorized))
 authenticator = Authenticate(
     credentials,
     cookie['name'],
