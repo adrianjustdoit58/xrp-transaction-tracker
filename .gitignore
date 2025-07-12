@@ -1,0 +1,12 @@
+# Ignore extracted data
+pdf_extracted.json
+*.json  # If more JSONs with sensitive data
+# Ignore images and binaries
+*.png
+*.jpg
+# Ignore Python cache
+__pycache__/
+*.pyc
+# Ignore large files or personal docs
+*.pdf
+*.xlsx 

@@ -1,0 +1,7 @@
+numpy
+requests
+networkx
+matplotlib
+pytest 
+streamlit-authenticator
+reportlab 
