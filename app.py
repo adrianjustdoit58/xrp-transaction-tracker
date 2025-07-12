@@ -20,12 +20,16 @@ from reportlab.pdfgen import canvas
 
 # Login setup
 # Direct access to st.secrets
+# Make mutable copies of secrets
+credentials = dict(st.secrets.credentials)
+cookie = dict(st.secrets.cookie)
+preauthorized = dict(st.secrets.preauthorized)
 authenticator = Authenticate(
-    st.secrets.credentials,
-    st.secrets.cookie.name,
-    st.secrets.cookie.key,
-    st.secrets.cookie.expiry_days,
-    st.secrets.preauthorized
+    credentials,
+    cookie['name'],
+    cookie['key'],
+    cookie['expiry_days'],
+    preauthorized
 )
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
