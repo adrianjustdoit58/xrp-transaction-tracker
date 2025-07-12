@@ -18,22 +18,15 @@ import reportlab
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
-# Login setup (hardcoded for simplicity; use secrets in deployment)
-config = yaml.safe_load('''
-credentials:
-  usernames:
-    investigator:
-      email: test@email.com
-      name: Investigator
-      password: $2b$12$KIXp1O6W6z1K8z1K8z1K8e  # Hashed 'xrp-trace-secure'
-cookie:
-  expiry_days: 30
-  key: random_key
-preauthorized:
-  emails:
-    - test@email.com
-''')
-authenticator = Authenticate(config['credentials'], config['cookie'], config['preauthorized'])
+# Login setup
+config = yaml.safe_load(st.secrets['auth_config'])
+authenticator = Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
     # Main UI here
