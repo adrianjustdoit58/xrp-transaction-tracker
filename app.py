@@ -48,7 +48,7 @@ authenticator = Authenticate(
     cookie['name'],
     cookie['key'],
     cookie['expiry_days'],
-    preauthorized  # Use the copied preauthorized
+    pre-authorized  # Use the copied pre-authorized with hyphen
 )
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
