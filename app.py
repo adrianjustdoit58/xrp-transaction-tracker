@@ -40,7 +40,7 @@ cookie = {
     "key": st.secrets["cookie"]["key"],
     "name": st.secrets["cookie"]["name"]
 }
-preauthorized = {
+pre_authorized = {
     "emails": list(st.secrets["preauthorized"]["emails"])
 }
 authenticator = Authenticate(
@@ -48,7 +48,7 @@ authenticator = Authenticate(
     cookie['name'],
     cookie['key'],
     cookie['expiry_days'],
-    pre-authorized  # Use the copied pre-authorized with hyphen
+    pre_authorized  # Use the copied pre_authorized
 )
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
