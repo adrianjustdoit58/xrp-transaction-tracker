@@ -22,15 +22,33 @@ from reportlab.pdfgen import canvas
 # Login setup
 # Direct access to st.secrets
 # Make mutable copies of secrets
-credentials = copy.deepcopy(dict(st.secrets.credentials))
-cookie = copy.deepcopy(dict(st.secrets.cookie))
-preauthorized = copy.deepcopy(dict(st.secrets.preauthorized))
+credentials = {
+    "usernames": {
+        username: {
+            "email": user["email"],
+            "failed_login_attempts": user.get("failed_login_attempts", 0),
+            "first_name": user["first_name"],
+            "last_name": user["last_name"],
+            "logged_in": user.get("logged_in", False),
+            "password": user["password"],
+            "roles": user.get("roles", [])
+        } for username, user in st.secrets["credentials"]["usernames"].items()
+    }
+}
+cookie = {
+    "expiry_days": st.secrets["cookie"]["expiry_days"],
+    "key": st.secrets["cookie"]["key"],
+    "name": st.secrets["cookie"]["name"]
+}
+preauthorized = {
+    "emails": list(st.secrets["preauthorized"]["emails"])
+}
 authenticator = Authenticate(
     credentials,
     cookie['name'],
     cookie['key'],
     cookie['expiry_days'],
-    st.secrets.preauthorized  # Correct spelling
+    preauthorized  # Use the copied preauthorized
 )
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
