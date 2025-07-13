@@ -41,7 +41,7 @@ cookie = {
     "name": st.secrets["cookie"]["name"]
 }
 pre_authorized = {
-    "emails": list(st.secrets["preauthorized"]["emails"])
+    "emails": list(st.secrets["pre-authorized"]["emails"])
 }
 authenticator = Authenticate(
     credentials,
